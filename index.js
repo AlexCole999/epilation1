@@ -1,17 +1,14 @@
-// server.js
 const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Миддлвар для парсинга JSON-тела
-app.use(express.json());
-
-// POST-эндпоинт
-app.post('/api/click', (req, res) => {
-  const requestBody = req.body;
+// GET-эндпоинт
+app.get('/api/click', (req, res) => {
+  const queryData = req.query;
+  console.log('GSM отправил:', queryData);
 
   res.json({
-    received: requestBody,
+    received: queryData,
     status: 'success'
   });
 });

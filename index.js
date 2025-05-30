@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 80;
 
 // GET-эндпоинт с try/catch
 app.get('/api/click', (req, res) => {

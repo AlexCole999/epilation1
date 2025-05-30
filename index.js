@@ -2,18 +2,32 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// GET-эндпоинт
+// GET-эндпоинт с try/catch
 app.get('/api/click', (req, res) => {
-  const queryData = req.query;
-  console.log('GSM отправил:', queryData);
+  try {
+    const queryData = req.query;
+    console.log('GSM отправил:', queryData);
 
-  res.json({
-    received: queryData,
-    status: 'success'
-  });
+    res.json({
+      received: queryData,
+      status: 'success'
+    });
+  } catch (error) {
+    console.error('Ошибка в обработчике /api/click:', error.message);
+    res.status(500).json({
+      status: 'error',
+      message: 'Internal Server Error'
+    });
+  }
+});
+
+// Глобальный отлов ошибок сервера
+app.use((err, req, res, next) => {
+  console.error('Глобальная ошибка:', err.stack);
+  res.status(500).send('Что-то пошло не так!');
 });
 
 // Запуск сервера
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
 });

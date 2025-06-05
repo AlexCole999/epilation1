@@ -16,10 +16,12 @@ app.get('/api/click', (req, res) => {
         reset: true
       });
     }
-    res.status(200).json({
-      received: queryData,
-      status: 'success'
-    });
+    else {
+      res.status(200).json({
+        received: queryData,
+        status: 'success'
+      });
+    }
 
   } catch (error) {
     console.error('Ошибка в обработчике /api/click:', error.message);

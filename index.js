@@ -9,19 +9,11 @@ app.get('/api/click', (req, res) => {
     console.log('GSM отправил:', queryData);
     console.log(req.query.count);
 
-    if (req.query.count >= 1) {
-      res.status(200).json({
-        received: queryData,
-        status: 'success',
-        reset: true
-      });
-    }
-    else {
-      res.status(200).json({
-        received: queryData,
-        status: 'success'
-      });
-    }
+    res.status(200).json({
+      received: queryData,
+      status: 'success'
+    });
+
 
   } catch (error) {
     console.error('Ошибка в обработчике /api/click:', error.message);

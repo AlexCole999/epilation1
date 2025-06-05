@@ -8,7 +8,7 @@ app.get('/api/click', (req, res) => {
     const queryData = req.query;
     console.log('GSM отправил:', queryData);
 
-    res.json({
+    res.status(200).json({
       received: queryData,
       status: 'success'
     });
